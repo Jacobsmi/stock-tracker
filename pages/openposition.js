@@ -1,3 +1,5 @@
+import styles from '../styles/OpenPosition.module.css'
+
 export default function AddTrade() {
 
   function addNewTrade() {
@@ -14,14 +16,13 @@ export default function AddTrade() {
     }
 
     let quantity = document.getElementById('position-quantity').value
-    console.log(quantity)
-    if(!/^(\d+\.\d{1,2})$/.test(quantity)){
+    if (!/^\d+\.\d{0,10}$/.test(quantity)) {
       validTrade = false
       console.log("Not a good quantity")
     }
-    
+
     let cost = document.getElementById('position-cost').value
-    if(!/^(\d+\.\d{1,2})$/.test(cost)){
+    if (!/^\d+\.\d{0,10}$/.test(cost)) {
       validTrade = false
       console.log("Not a good cost")
     }
@@ -56,12 +57,25 @@ export default function AddTrade() {
   }
 
   return (
-    <div>
-      <input id='position-symbol' placeholder='Ticker Symbol' type='text'></input>
-      <input id='position-quantity' placeholder='Quantity' type='text'></input>
-      <input id='position-cost' placeholder='Cost per Share' type='text'></input>
-      <input id='position-date' placeholder='Date' type='date'></input>
-      <button onClick={addNewTrade}>Add Position</button>
+    <div className={styles.container}>
+      <div className={styles.side}>
+
+      </div>
+      <div className={styles.form}>
+        <h1>Add Position</h1>
+        <label for='position-symbol'>Symbol:</label>
+        <input id='position-symbol' placeholder='Ticker Symbol' type='text'></input><br />
+        <label for='position-quantity'>Quantity:</label>
+        <input id='position-quantity' placeholder='Quantity' type='text'></input><br />
+        <label for='position-cost'>Cost per Share:</label>
+        <input id='position-cost' placeholder='Cost per Share' type='text'></input><br />
+        <label for='position-date'>Date of trade:</label>
+        <input id='position-date' placeholder='Date' type='date'></input><br />
+        <button onClick={addNewTrade}>Add Position</button>
+      </div>
+      <div className={styles.side}>
+
+      </div>
     </div>
   )
 }

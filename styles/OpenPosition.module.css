@@ -1,0 +1,50 @@
+.container{
+  height: max(100vh, 600px);
+  width: 100vw;
+  background-color: #293241;
+}
+
+@media screen and (min-width: 1024px){
+  .container{
+    display: flex;
+    align-items: center;
+  }
+  .side{
+    flex: 40;
+  }
+  .form{
+    flex: 50;
+    height: 60vh;
+    background-color: #98c1d9;
+    border-radius: 20px;
+    box-sizing: border-box;
+    text-align: center;
+  }
+  .form label{
+    display: inline-block;
+    text-align: left;
+    width: 15vw;
+    font-size: 2vw;
+  }
+  .form input{
+    width: 15vw;
+    font-size: 1.5vw;
+    margin-bottom: 40px;
+    border: none;
+    border-bottom: 1px solid black;
+    color: black;
+    outline: none;
+    background-color: #98c1d9;
+  }
+  .form button{
+    width: 20vw;
+    height: 3vw;
+    color: white;
+    font-weight: 800;
+    background-color: #ee6c4d;
+    font-size: 1.5vw;
+    border: 0;
+    outline: 0;
+    border-radius: 10px;
+  }
+}
