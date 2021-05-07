@@ -1,50 +1,60 @@
-.container{
-  height: max(100vh, 600px);
+.container {
+  height: 100%;
+  min-height: max(100vh, 600px);
   width: 100vw;
   background-color: #293241;
 }
 
-@media screen and (min-width: 1024px){
-  .container{
-    display: flex;
-    align-items: center;
-  }
-  .side{
-    flex: 40;
-  }
-  .form{
-    flex: 50;
-    height: 60vh;
-    background-color: #98c1d9;
-    border-radius: 20px;
-    box-sizing: border-box;
-    text-align: center;
-  }
-  .form label{
-    display: inline-block;
-    text-align: left;
-    width: 15vw;
-    font-size: 2vw;
-  }
-  .form input{
-    width: 15vw;
-    font-size: 1.5vw;
-    margin-bottom: 40px;
-    border: none;
-    border-bottom: 1px solid black;
-    color: black;
-    outline: none;
-    background-color: #98c1d9;
-  }
-  .form button{
-    width: 20vw;
-    height: 3vw;
-    color: white;
-    font-weight: 800;
-    background-color: #ee6c4d;
-    font-size: 1.5vw;
-    border: 0;
-    outline: 0;
-    border-radius: 10px;
-  }
+.top {
+  position: relative;
+  height: 20vh; 
+  width: 100vw;
+}
+
+.form {
+  height: 100%;
+  width: 80vw;
+  margin: auto;
+  margin-top: 0;
+  color: white;
+}
+
+.form label {
+  display: block;
+  font-size: 25px;
+  margin-bottom: 10px;
+}
+
+.form input{
+  border: none;
+  outline: none;
+  border-bottom: 1px solid black;
+  width: 80vw;
+  margin-bottom: 30px;
+  color: #c4c4c4;
+  font-size: 20px;
+  background-color: #293241;
+}
+.form input::placeholder{
+  color: #c4c4c4;
+}
+.form input:focus{
+  border-bottom: 1px solid white;
+}
+.form input::-webkit-calendar-picker-indicator {
+  filter: invert(1);
+}
+
+.form button{
+  width: 40vw;
+  height: 30px;
+  background-color: #EE6C4D;
+  font-size: 15px;
+  font-weight: 700;
+  border: none;
+  outline: none;
+  border-radius: 5px;
+  box-shadow: 1px 1px 1px 1px gray;
+  color: white;
+  margin-bottom: 30px;
 }
