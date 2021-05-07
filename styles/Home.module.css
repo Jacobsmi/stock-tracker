@@ -1,0 +1,21 @@
+.container {
+  height: 100%;
+  min-height: max(100vh, 600px);
+  width: 100vw;
+  background-color: #293241;
+  display: flex;
+  flex-direction: column;
+}
+.title{
+  flex: none;
+  text-align: center;
+  color: white;
+}
+
+.content{
+  flex: 9;
+}
+
+.add{
+  flex: 1;
+}
