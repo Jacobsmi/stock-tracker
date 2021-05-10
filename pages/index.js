@@ -1,5 +1,7 @@
 import { useEffect, useState } from 'react'
 import styles from '../styles/Home.module.css'
+import Link from 'next/link'
+import OpenPosition from '../components/OpenPosition'
 
 export default function Home() {
 
@@ -17,16 +19,18 @@ export default function Home() {
         {openPositions ?
           openPositions.map((position) => {
             return (
-              <div key={position.id}>
-                {position.symbol}
-              </div>
+              <OpenPosition position={position} />
             )
           })
 
           : 'No positions to display yet'}
 
       </div>
-      <div className={styles.add}></div>
+      <div className={styles.add}>
+        <Link href='/addopenposition'>
+          Add New Position
+        </Link>
+      </div>
     </div>
   )
 }

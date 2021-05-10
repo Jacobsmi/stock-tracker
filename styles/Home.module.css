@@ -13,9 +13,20 @@
 }
 
 .content{
-  flex: 9;
+  flex: 25;
 }
 
 .add{
   flex: 1;
+}
+
+.add a{
+  float: right;
+  font-weight: 700;
+  margin-right: 2vw;
+  background-color: #ee6c4d;
+  color: white;
+  padding: 10px;
+  border-radius: 10px;
+  box-shadow: black 5px 5px;
 }

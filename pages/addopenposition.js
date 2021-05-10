@@ -1,5 +1,5 @@
 import router from 'next/router'
-import styles from '../styles/OpenPosition.module.css'
+import styles from '../styles/AddOpenPosition.module.css'
 import Image from 'next/image'
 import { useState } from 'react'
 
@@ -7,7 +7,40 @@ export default function AddTrade() {
 
   const [errors, setErrors] = useState(false)
 
+  function storePosition(symbol, quantity, cost, date) {
+    console.log("storing values")
+    // get the current value from local storage
+    let openPositions = JSON.parse(localStorage.getItem('open-positions'))
+
+    // if there is nothing currently in local storage create an array of objects and store it
+    if (openPositions === null) {
+      console.log("Adding to empty list")
+      openPositions = JSON.stringify([{
+        id: 1,
+        symbol: symbol,
+        quantity: quantity,
+        cps: cost,
+        date: document.getElementById('position-date').value
+      }])
+      localStorage.setItem('open-positions', openPositions)
+
+    } else {
+      // otherwise adds trade to existing list if there are already entries
+      openPositions.push({
+        id: (openPositions[length].id + 1),
+        symbol: document.getElementById('position-symbol').value,
+        quantity: document.getElementById('position-quantity').value,
+        cps: document.getElementById('position-cost').value,
+        date: document.getElementById('position-date').value
+      })
+      localStorage.setItem('open-positions', JSON.stringify(openPositions))
+    }
+    // redirect back to the home page
+    router.push('/')
+  }
+
   function verifyValues() {
+    console.log("Verifying values")
     // track if entry is valid
     let validTrade = true
 
@@ -39,70 +72,39 @@ export default function AddTrade() {
 
     // any date chosen by the picker is valid so just make sure one exists
     let date = document.getElementById('position-date').value
-    if (date === '') {
+    if (!/^\d{2}\/\d{2}\/\d{4}$/.test(date) &&   !/^\d{4}-\d{2}-\d{2}$/.test(date)) {
       validTrade = false
       errorString += '<li>No Date Selected</li>'
+    }else{
+      let dateObject = new Date(date)
+      dateObject.setMinutes(dateObject.getMinutes() + new Date().getTimezoneOffset())
+      console.log(dateObject)
+      let dateString = (dateObject.getMonth()+1) + " " + dateObject.getDate() + " " + dateObject.getFullYear()
+      console.log(dateString)
     }
+
     // close error string, done with validation
     errorString += '</ul>'
 
     // set the value of error string
     document.getElementById('position-errors').innerHTML = errorString
 
+    console.log(validTrade)
+    // if all inputs are valid
     if (validTrade) {
       // hide error div
       setErrors(false)
-      return true
+      storePosition(symbol, quantity, cost, date)
     } else {
       // show error div
       setErrors(true)
-      return false
     }
 
   }
-
-
-  function storePosition() {
-
-    // get the current value from local storage
-    let openPositions = JSON.parse(localStorage.getItem('open-positions'))
-    
-    // if there is nothing currently in local storage create an array of objects and store it
-    if (openPositions === null) {
-      console.log("Adding to empty list")
-      openPositions = JSON.stringify([{
-        id: 1,
-        symbol: document.getElementById('position-symbol').value,
-        quantity: document.getElementById('position-quantity').value,
-        cps: document.getElementById('position-cost').value,
-        date: document.getElementById('position-date').value
-      }])
-      localStorage.setItem('open-positions', openPositions)
-
-    } else {
-      // otherwise adds trade to existing list if there are already entries
-      openPositions.push({
-        id: (openPositions[length].id + 1),
-        symbol: document.getElementById('position-symbol').value,
-        quantity: document.getElementById('position-quantity').value,
-        cps: document.getElementById('position-cost').value,
-        date: document.getElementById('position-date').value
-      })
-      localStorage.setItem('open-positions', JSON.stringify(openPositions))
-    }
-    // redirect back to the home page
-    router.push('/')
-  }
-
 
   function addNewTrade() {
     // verifies values from form
     let validTrade = verifyValues()
-
-    // if all values valid store the position
-    if (validTrade) {
-      storePosition()
-    }
   }
 
   return (
@@ -128,13 +130,13 @@ export default function AddTrade() {
         >
         </div>
         <label htmlFor='position-symbol'>Symbol</label>
-        <input id='position-symbol' placeholder='Ticker Symbol' type='text'></input><br />
+        <input id='position-symbol' placeholder='Ticker Symbol' type='text' required={true}></input><br />
         <label htmlFor='position-quantity'>Quantity</label>
         <input id='position-quantity' placeholder='Quantity' type='text'></input><br />
         <label htmlFor='position-cost'>Cost per Share</label>
         <input id='position-cost' placeholder='Cost per Share' type='text'></input><br />
         <label htmlFor='position-date'>Date of trade</label>
-        <input id='position-date' placeholder='Date' type='date'></input><br />
+        <input id='position-date' placeholder='mm-dd-yyyy' type='date'></input><br />
         <button onClick={addNewTrade}>Add Position</button>
       </div>
     </div>
