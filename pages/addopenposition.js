@@ -72,15 +72,14 @@ export default function AddTrade() {
 
     // any date chosen by the picker is valid so just make sure one exists
     let date = document.getElementById('position-date').value
+    let dateString = ''
     if (!/^\d{2}\/\d{2}\/\d{4}$/.test(date) &&   !/^\d{4}-\d{2}-\d{2}$/.test(date)) {
       validTrade = false
       errorString += '<li>No Date Selected</li>'
     }else{
       let dateObject = new Date(date)
-      dateObject.setMinutes(dateObject.getMinutes() + new Date().getTimezoneOffset())
-      console.log(dateObject)
-      let dateString = (dateObject.getMonth()+1) + " " + dateObject.getDate() + " " + dateObject.getFullYear()
-      console.log(dateString)
+      dateObject.setMinutes(dateObject.getMinutes() + dateObject.getTimezoneOffset())
+      dateString = (dateObject.getMonth()+1) + " " + dateObject.getDate() + " " + dateObject.getFullYear()
     }
 
     // close error string, done with validation
@@ -94,7 +93,7 @@ export default function AddTrade() {
     if (validTrade) {
       // hide error div
       setErrors(false)
-      storePosition(symbol, quantity, cost, date)
+      storePosition(symbol, quantity, cost, dateString)
     } else {
       // show error div
       setErrors(true)
