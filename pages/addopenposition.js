@@ -135,7 +135,7 @@ export default function AddTrade() {
         <label htmlFor='position-cost'>Cost per Share</label>
         <input id='position-cost' placeholder='Cost per Share' type='text'></input><br />
         <label htmlFor='position-date'>Date of trade</label>
-        <input id='position-date' placeholder='mm-dd-yyyy' type='date'></input><br />
+        <input id='position-date' placeholder='mm/dd/yyyy' type='date'></input><br />
         <button onClick={addNewTrade}>Add Position</button>
       </div>
     </div>
