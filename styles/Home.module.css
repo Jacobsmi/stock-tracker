@@ -23,7 +23,9 @@
   margin: auto;
   background-color: #98c1d9;
 }
-
+.openPositionsTable tr{
+  font-weight: 500;
+}
 .openPositionsTable th{
   text-align: left;
   width: 20vw;
