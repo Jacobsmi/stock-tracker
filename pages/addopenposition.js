@@ -68,6 +68,9 @@ export default function AddTrade() {
     if (!/^\d+\.{0,1}\d{0,10}$/.test(cost)) {
       validTrade = false
       errorString += '<li>Invalid Cost</li>'
+    }else{
+      cost = Number(cost).toFixed(2)
+      console.log("New cost is " + cost)
     }
 
     // any date chosen by the picker is valid so just make sure one exists

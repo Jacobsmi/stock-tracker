@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react'
 import styles from '../styles/Home.module.css'
 import Link from 'next/link'
-import OpenPosition from '../components/OpenPosition'
 
 export default function Home() {
 
@@ -52,7 +51,7 @@ export default function Home() {
               )
             })}
           </table>
-          : 'No positions to display yet'}
+          : <div style={{textAlign: 'center', color: 'white'}}>No positions to display yet</div>}
       </div>
       <div className={styles.add}>
         <Link href='/addopenposition'>
