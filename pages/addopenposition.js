@@ -20,7 +20,7 @@ export default function AddTrade() {
         symbol: symbol,
         quantity: quantity,
         cps: cost,
-        date: document.getElementById('position-date').value
+        date: date
       }])
       localStorage.setItem('open-positions', openPositions)
 
@@ -28,10 +28,10 @@ export default function AddTrade() {
       // otherwise adds trade to existing list if there are already entries
       openPositions.push({
         id: (openPositions[length].id + 1),
-        symbol: document.getElementById('position-symbol').value,
-        quantity: document.getElementById('position-quantity').value,
-        cps: document.getElementById('position-cost').value,
-        date: document.getElementById('position-date').value
+        symbol: symbol,
+        quantity: quantity,
+        cps: cost,
+        date: date
       })
       localStorage.setItem('open-positions', JSON.stringify(openPositions))
     }
@@ -79,7 +79,7 @@ export default function AddTrade() {
     }else{
       let dateObject = new Date(date)
       dateObject.setMinutes(dateObject.getMinutes() + dateObject.getTimezoneOffset())
-      dateString = (dateObject.getMonth()+1) + " " + dateObject.getDate() + " " + dateObject.getFullYear()
+      dateString = (dateObject.getMonth()+1) + "/" + dateObject.getDate() + "/" + dateObject.getFullYear()
     }
 
     // close error string, done with validation

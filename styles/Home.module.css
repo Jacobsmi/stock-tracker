@@ -15,7 +15,21 @@
 .content{
   flex: 25;
 }
-
+.subtitle{
+  color: white;
+  margin-left: 10vw;
+}
+.openPositionsTable{
+  margin: auto;
+  background-color: #98c1d9;
+}
+.openPositionsTable tr{
+  font-size: 1.6vw;
+}
+.openPositionsTable th{
+  text-align: left;
+  width: 20vw;
+}
 .add{
   flex: 1;
 }

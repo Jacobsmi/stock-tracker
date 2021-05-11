@@ -16,15 +16,43 @@ export default function Home() {
     <div className={styles.container}>
       <h1 className={styles.title}>Stock Tracker</h1>
       <div className={styles.content}>
+        <h2 className={styles.subtitle}>Open Positions</h2>
         {openPositions ?
-          openPositions.map((position) => {
-            return (
-              <OpenPosition position={position} />
-            )
-          })
-
+          <table className={styles.openPositionsTable}>
+            <tr>
+              <th>
+                Symbol
+            </th>
+              <th>
+                Shares
+            </th>
+              <th>
+                Cost per Share
+            </th>
+              <th>
+                Date
+            </th>
+            </tr>
+            {openPositions.map((position) => {
+              return (
+                <tr>
+                  <td>
+                    {position.symbol}
+                  </td>
+                  <td>
+                    {position.quantity}
+                  </td>
+                  <td>
+                    {position.cps}
+                  </td>
+                  <td>
+                    {position.date}
+                  </td>
+                </tr>
+              )
+            })}
+          </table>
           : 'No positions to display yet'}
-
       </div>
       <div className={styles.add}>
         <Link href='/addopenposition'>
