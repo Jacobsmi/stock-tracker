@@ -8,9 +8,9 @@ export default function Home() {
 
   useEffect(() => {
     // get open positions here
-    console.log(JSON.parse(localStorage.getItem('open-positions')))
     setOpenPositions(JSON.parse(localStorage.getItem('open-positions')))
   }, [])
+  
   return (
     <div className={styles.container}>
       <h1 className={styles.title}>Stock Tracker</h1>
@@ -18,40 +18,60 @@ export default function Home() {
         <h2 className={styles.subtitle}>Open Positions</h2>
         {openPositions ?
           <table className={styles.openPositionsTable}>
-            <tr>
-              <th>
-                Symbol
-            </th>
-              <th>
-                Shares
-            </th>
-              <th>
-                Cost per Share
-            </th>
-              <th>
-                Date
-            </th>
-            </tr>
-            {openPositions.map((position) => {
-              return (
-                <tr>
-                  <td>
-                    {position.symbol}
-                  </td>
-                  <td>
-                    {position.quantity}
-                  </td>
-                  <td>
-                    {position.cps}
-                  </td>
-                  <td>
-                    {position.date}
-                  </td>
-                </tr>
-              )
-            })}
+            <thead>
+              <tr>
+                <th>
+                  Symbol
+                </th>
+                <th>
+                  Shares
+                </th>
+                <th>
+                  Cost per Share
+                </th>
+                <th>
+                  Date
+                </th>
+                <th>
+                  Edit Position
+                </th>
+                <th>
+                  Close Position
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              {openPositions.map((position) => {
+                return (
+                  <tr key={position.id}>
+                    <td>
+                      {position.symbol}
+                    </td>
+                    <td>
+                      {position.quantity}
+                    </td>
+                    <td>
+                      {position.cps}
+                    </td>
+                    <td>
+                      {position.date}
+                    </td>
+                    <td>
+                      <Link href={`/edit?id=${position.id}`}>
+                        <a>Edit</a>
+                      </Link>
+                    </td>
+                    <td>
+                      <Link href={`/close?id=${position.id}`}>
+                        <a>Close</a>
+                      </Link>
+                    </td>
+                  </tr>
+                )
+              })}
+            </tbody>
           </table>
-          : <div style={{textAlign: 'center', color: 'white'}}>No positions to display yet</div>}
+          : <div style={{ textAlign: 'center', color: 'white' }}>No positions to display yet</div>}
       </div>
       <div className={styles.add}>
         <Link href='/addopenposition'>

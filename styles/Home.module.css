@@ -17,7 +17,7 @@
 }
 .subtitle{
   color: white;
-  margin-left: 10vw;
+  margin-left: 8vw;
 }
 .openPositionsTable{
   border-collapse:collapse;
@@ -30,7 +30,7 @@
 .openPositionsTable th{
   background-color: #e0fbfc;
   text-align: left;
-  width: 20vw;
+  width: 14vw;
 }
 
 .add{
